@@ -1,0 +1,16 @@
+{
+  "name": "@lhn/ui",
+  "version": "0.0.0",
+  "description": "vue components",
+  "main": "index.js",
+  "repository": "https://github.com/Leooman/LhnUI.git",
+  "author": "Leooman <yonghenglion@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "lerna": "^3.22.1"
+  },
+  "workspaces": [
+    "packages/*"
+  ]
+}

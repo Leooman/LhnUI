@@ -1,0 +1,24 @@
+{
+  "name": "@lhn/book",
+  "version": "0.0.0",
+  "description": "story book for ui",
+  "main": "index.js",
+  "repository": "https://github.com/Leooman/LhnUI.git",
+  "author": "Leooman <yonghenglion@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "serve": "start-storybook"
+  },
+  "dependencies": {
+    "@storybook/vue": "^5.3.19"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.10.2",
+    "babel-loader": "^8.1.0",
+    "babel-preset-vue": "^2.0.2",
+    "vue": "^2.6.11",
+    "vue-loader": "^15.9.2",
+    "vue-template-compiler": "^2.6.11"
+  }
+}

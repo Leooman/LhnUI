@@ -8,7 +8,15 @@
   "license": "MIT",
   "private": true,
   "devDependencies": {
-    "lerna": "^3.22.1"
+    "clean-webpack-plugin": "^3.0.0",
+    "lerna": "^3.22.1",
+    "ts-loader": "^7.0.5",
+    "typescript": "^3.9.5",
+    "webpack-cli": "^3.3.12"
+  },
+  "scripts": {
+    "serve:storybook": "cd packages/storybook && yarn serve",
+    "build:utils": "cd packages/utils && webpack"
   },
   "workspaces": [
     "packages/*"

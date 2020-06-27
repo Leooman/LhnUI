@@ -1,16 +1,22 @@
 <template>
-  <button :class="type" class="btn">
+  <button :class="type" class="btn" :id="uuid">
     <slot></slot>
   </button>
 </template>
 
 <script>
+import {uuid} from "@lhn/utils"
 export default {
   name: "HelloWorld",
   props: {
     type: {
       type: String,
       default: "default" // default/primary/danger
+    }
+  },
+  computed:{
+    uuid(){
+      return uuid()
     }
   }
 };

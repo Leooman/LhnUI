@@ -4,9 +4,6 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 module.exports = {
   resolve: {
     extensions: [".js", ".ts", ".json"],
-    // alias: {
-    //   vue$: "vue/dist/vue.esm.js",
-    // },
   },
   // devtool: 'source-map',// 打包出的js文件是否生成map文件（方便浏览器调试）
   mode: "production",
@@ -33,10 +30,27 @@ module.exports = {
         ],
         exclude: /node_modules/,
       },
+      {
+        test: /\.s?css$/,
+        oneOf: [
+          {
+            test: /\.module\.s?css$/,
+            use: [{
+                loader: "css-loader",
+                options: { modules: true,onlyLocals:false},
+              },
+              "sass-loader",
+            ],
+          },
+          {
+            use: ["css-loader", "sass-loader"],
+          },
+        ],
+      },
     ],
   },
   plugins: [new CleanWebpackPlugin()],
   externals: {
-    vue: "vue"
+    vue: "vue",
   },
 };

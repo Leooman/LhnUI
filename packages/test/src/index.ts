@@ -1,11 +1,17 @@
-import { Component, Vue } from "vue-property-decorator"
+import { Component, Vue,Prop } from "vue-property-decorator"
+import "./index.module.css"
 @Component({
   name: "MyComponent",
-  template: '<button @click="onClick">Click!</button>',
+  template: '<button :id="style.locals.button" @click="onClick">{{title}}</button>',
 })
-export default class MyComponent extends Vue {
+class MyComponent extends Vue {
+  @Prop({ default: "test" }) readonly title!: string;
+
   message: string = "Hello!";
+  style:any = require("./index.module.css")
   onClick(): void {
     window.alert(this.message);
   }
 }
+
+export default new MyComponent().$options

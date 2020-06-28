@@ -14,3 +14,14 @@ export const danger = () => ({
   components: { vButton },
   template: '<v-button type="danger">danger</v-button>',
 });
+
+
+import Test from "@lhn/test";
+console.log(vButton);
+const TestComponent = new Test().$options;
+console.log(TestComponent);
+
+export const test = () => ({
+  components:{TestComponent},
+  template:"<test-component message='demo'></test-component>"
+})

@@ -1,13 +1,12 @@
 import { Component, Vue, Prop } from "vue-property-decorator"
 import { VNode, CreateElement } from "vue/types/umd";
-
+import style from "./index.module.scss"
 @Component({
   name: "MyComponent",
   // template: '<button :id="style.button" @click="onClick">{{title}}</button>',
 })
 class MyComponent extends Vue {
   @Prop({ default: "test" }) readonly title!: string;
-  styles:any = require("./index.module.scss")
 
   message: string = "Hello!";
   onClick(): void {
@@ -16,7 +15,7 @@ class MyComponent extends Vue {
   render(h:CreateElement):VNode {
     return h("button", {
       attrs:{
-        id:this.styles.button,
+        id:style.button,
         title:this.title
       },
       on:{

@@ -3,12 +3,12 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
   resolve: {
-    extensions: [".js", ".ts", ".json"],
+    extensions: [".js", ".ts", ".json",".tsx"],
   },
   // devtool: 'source-map',// 打包出的js文件是否生成map文件（方便浏览器调试）
   mode: "production",
   entry: {
-    main: "./src/index.ts",
+    main: "./src/index.tsx",
   },
   output: {
     filename: "[name].umd.min.js", // 生成的fiename需要与package.json中的main一致
@@ -20,6 +20,9 @@ module.exports = {
       {
         test: /\.tsx?$/,
         use: [
+          {
+            loader:"babel-loader"
+          },
           {
             loader: "ts-loader",
             options: {

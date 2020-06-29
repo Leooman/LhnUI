@@ -16,14 +16,15 @@ class MyComponent extends Vue {
   render(h:CreateElement):VNode {
     return h("button", {
       attrs:{
-        id:this.styles.button
+        id:this.styles.button,
+        title:this.title
       },
       on:{
         click:this.onClick
       },
-      domProps: {
-        innerHTML: this.title
-      },
+      // domProps: {
+      //   innerHTML: this.title
+      // },
     },this.$slots.default)
   }
 }

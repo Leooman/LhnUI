@@ -35,7 +35,9 @@ module.exports = {
         oneOf: [
           {
             test: /\.module\.s?css$/,
-            use: [{
+            use: [
+              "style-loader",
+              {
                 loader: "css-loader",
                 options: { modules: true,onlyLocals:false},
               },
@@ -43,7 +45,7 @@ module.exports = {
             ],
           },
           {
-            use: ["css-loader", "sass-loader"],
+            use: ["style-loader","css-loader", "sass-loader"],
           },
         ],
       },

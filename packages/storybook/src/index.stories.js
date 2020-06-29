@@ -1,7 +1,6 @@
 export default { title: "Button" };
 
-import TestComponent from "@lhn/test"
-console.log(TestComponent)
+import TestComponent from "@lhn/test";
 export const test = () => ({
   components:{TestComponent},
   template:`<div>

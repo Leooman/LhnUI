@@ -1,0 +1,11 @@
+{
+  "name": "@lhn/diagram",
+  "version": "0.0.0",
+  "description": "diagram component",
+  "main": "./dist/main.umd.min.js",
+  "types": "./dist/types/index.d.ts",
+  "repository": "https://github.com/Leooman/LhnUI.git",
+  "author": "Leooman <yonghenglion@gmail.com>",
+  "license": "MIT",
+  "private": true
+}

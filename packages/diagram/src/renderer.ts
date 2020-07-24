@@ -1,4 +1,5 @@
 import config from './utils/config'
+import { uuid } from '@lhn/utils'
 import {
   DefalutOptions,
   Options,
@@ -10,7 +11,7 @@ import {
   LineMode,
 } from './class'
 import { drawTableNode } from './models/node/table'
-import { pointInRect, uuid } from './utils/utils'
+import { pointInRect } from './utils/utils'
 import { drawShading } from './utils/externals'
 import { MouseupStrategy, MousemoveStrategy, MousedownStrategy } from './events'
 export class DiagramRenderer {

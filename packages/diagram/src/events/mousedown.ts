@@ -2,7 +2,7 @@ import config from '../utils/config'
 import { DiagramRenderer } from '../renderer'
 import { EventType, LineMode } from '../class'
 import { toggleCollapse } from '../models/node/table'
-import { uuid } from '../utils/utils'
+import { uuid } from '@lhn/utils'
 import { State } from './base'
 class Excuter implements State {
   excute(context: DiagramRenderer, e: MouseEvent) {

@@ -1,6 +1,6 @@
 import config from '../utils/config'
 import { drawLineFns, drawArrowFns } from '../utils/register'
-import { uuid } from '../utils/utils'
+import { uuid } from '@lhn/utils'
 import { Point } from './point'
 import { Rect } from './rect'
 import { Node } from './node'

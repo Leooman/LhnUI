@@ -24,7 +24,8 @@
     "preserve:storybook": "yarn build:utils && yarn build:test",
     "serve:storybook": "cd packages/storybook && yarn serve",
     "build:utils": "cd packages/utils && webpack",
-    "build:test": "cd packages/test && webpack"
+    "build:test": "cd packages/test && webpack",
+    "build:diagram": "cd packages/diagram && webpack"
   },
   "workspaces": [
     "packages/*"

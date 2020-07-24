@@ -1,0 +1,19 @@
+#diagramPage {
+    width: 1000px;
+    height: 500px;
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  #diagramMain {
+    display: flex;
+    flex: 1;
+    background: #ffffff;
+    overflow: hidden;
+    #canvas {
+      width: 100%;
+      height: 100%;
+      margin: auto;
+      overflow: hidden;
+    }
+  }
+}

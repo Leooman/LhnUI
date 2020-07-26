@@ -8,7 +8,8 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "serve": "start-storybook"
+    "serve": "start-storybook",
+    "deploy": "storybook-to-ghpages"
   },
   "dependencies": {
     "@lhn/diagram": "^0.0.0",
@@ -18,6 +19,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.10.2",
+    "@storybook/storybook-deployer": "^2.8.6",
     "babel-loader": "^8.1.0",
     "babel-preset-vue": "^2.0.2",
     "vue": "^2.6.11",

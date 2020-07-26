@@ -25,5 +25,10 @@
     "vue": "^2.6.11",
     "vue-loader": "^15.9.2",
     "vue-template-compiler": "^2.6.11"
+  },
+  "storybook-deployer": {
+    "gitUsername": "Leooman",
+    "gitEmail": "yonghenglion@gmail.com",
+    "commitMessage": "Deploy Storybook"
   }
 }

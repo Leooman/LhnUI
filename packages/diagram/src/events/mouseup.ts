@@ -42,7 +42,7 @@ class AnchorMatch implements State {
             id: context.newLineID,
             from: context.activeAnchor,
             to: anchor,
-            text: 'inner',
+            text: 'text',
           })
         } else {
           context.removeInvalidLine()
@@ -57,7 +57,7 @@ class AnchorMatch implements State {
             id: context.newLineID,
             from: context.activeAnchor,
             to: context.activeHoverNode.anchors[anchorIndex],
-            text: 'inner',
+            text: 'text',
           })
         }
       }

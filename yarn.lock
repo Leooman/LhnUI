@@ -2035,6 +2035,17 @@
     qs "^6.6.0"
     util-deprecate "^1.0.2"
 
+"@storybook/storybook-deployer@^2.8.6":
+  version "2.8.6"
+  resolved "https://registry.npm.taobao.org/@storybook/storybook-deployer/download/@storybook/storybook-deployer-2.8.6.tgz#00c2e84f27dfaa88cb0785361453f23b1ebb4ea3"
+  integrity sha1-AMLoTyffqojLB4U2FFPyOx67TqM=
+  dependencies:
+    git-url-parse "^11.1.2"
+    glob "^7.1.3"
+    parse-repo "^1.0.4"
+    shelljs "^0.8.1"
+    yargs "^15.0.0"
+
 "@storybook/theming@5.3.19":
   version "5.3.19"
   resolved "https://registry.npm.taobao.org/@storybook/theming/download/@storybook/theming-5.3.19.tgz#177d9819bd64f7a1a6ea2f1920ffa5baf9a5f467"
@@ -2666,7 +2677,7 @@ ansi-styles@^3.2.0, ansi-styles@^3.2.1:
   dependencies:
     color-convert "^1.9.0"
 
-ansi-styles@^4.1.0:
+ansi-styles@^4.0.0, ansi-styles@^4.1.0:
   version "4.2.1"
   resolved "https://registry.npm.taobao.org/ansi-styles/download/ansi-styles-4.2.1.tgz#90ae75c424d008d2624c5bf29ead3177ebfcf359"
   integrity sha1-kK51xCTQCNJiTFvynq0xd+v881k=
@@ -3868,6 +3879,15 @@ cliui@^5.0.0:
     string-width "^3.1.0"
     strip-ansi "^5.2.0"
     wrap-ansi "^5.1.0"
+
+cliui@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.npm.taobao.org/cliui/download/cliui-6.0.0.tgz#511d702c0c4e41ca156d7d0e96021f23e13225b1"
+  integrity sha1-UR1wLAxOQcoVbX0OlgIfI+EyJbE=
+  dependencies:
+    string-width "^4.2.0"
+    strip-ansi "^6.0.0"
+    wrap-ansi "^6.2.0"
 
 clone-deep@^4.0.1:
   version "4.0.1"
@@ -8248,6 +8268,11 @@ parse-path@^4.0.0:
     is-ssh "^1.3.0"
     protocols "^1.4.0"
 
+parse-repo@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.npm.taobao.org/parse-repo/download/parse-repo-1.0.4.tgz#74b91d2cb8675d11b99976a0065f6ce17fa1bcc8"
+  integrity sha1-dLkdLLhnXRG5mXagBl9s4X+hvMg=
+
 parse-url@^5.0.0:
   version "5.0.1"
   resolved "https://registry.npm.taobao.org/parse-url/download/parse-url-5.0.1.tgz#99c4084fc11be14141efa41b3d117a96fcb9527f"
@@ -9620,7 +9645,7 @@ shell-quote@1.7.2:
   resolved "https://registry.npm.taobao.org/shell-quote/download/shell-quote-1.7.2.tgz#67a7d02c76c9da24f99d20808fcaded0e0e04be2"
   integrity sha1-Z6fQLHbJ2iT5nSCAj8re0ODgS+I=
 
-shelljs@^0.8.3:
+shelljs@^0.8.1, shelljs@^0.8.3:
   version "0.8.4"
   resolved "https://registry.npm.taobao.org/shelljs/download/shelljs-0.8.4.tgz#de7684feeb767f8716b326078a8a00875890e3c2"
   integrity sha1-3naE/ut2f4cWsyYHiooAh1iQ48I=
@@ -9973,7 +9998,7 @@ string-width@^3.0.0, string-width@^3.1.0:
     is-fullwidth-code-point "^2.0.0"
     strip-ansi "^5.1.0"
 
-string-width@^4.0.0, string-width@^4.1.0:
+string-width@^4.0.0, string-width@^4.1.0, string-width@^4.2.0:
   version "4.2.0"
   resolved "https://registry.npm.taobao.org/string-width/download/string-width-4.2.0.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fstring-width%2Fdownload%2Fstring-width-4.2.0.tgz#952182c46cc7b2c313d1596e623992bd163b72b5"
   integrity sha1-lSGCxGzHssMT0VluYjmSvRY7crU=
@@ -11034,6 +11059,15 @@ wrap-ansi@^5.1.0:
     string-width "^3.0.0"
     strip-ansi "^5.0.0"
 
+wrap-ansi@^6.2.0:
+  version "6.2.0"
+  resolved "https://registry.npm.taobao.org/wrap-ansi/download/wrap-ansi-6.2.0.tgz#e9393ba07102e6c91a3b221478f0257cd2856e53"
+  integrity sha1-6Tk7oHEC5skaOyIUePAlfNKFblM=
+  dependencies:
+    ansi-styles "^4.0.0"
+    string-width "^4.1.0"
+    strip-ansi "^6.0.0"
+
 wrappy@1:
   version "1.0.2"
   resolved "https://registry.npm.taobao.org/wrappy/download/wrappy-1.0.2.tgz#b5243d8f3ec1aa35f1364605bc0d1036e30ab69f"
@@ -11126,7 +11160,7 @@ yargs-parser@^15.0.1:
     camelcase "^5.0.0"
     decamelize "^1.2.0"
 
-yargs-parser@^18.1.3:
+yargs-parser@^18.1.2, yargs-parser@^18.1.3:
   version "18.1.3"
   resolved "https://registry.npm.taobao.org/yargs-parser/download/yargs-parser-18.1.3.tgz?cache=0&sync_timestamp=1595125226701&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fyargs-parser%2Fdownload%2Fyargs-parser-18.1.3.tgz#be68c4975c6b2abf469236b0c870362fab09a7b0"
   integrity sha1-vmjEl1xrKr9GkjawyHA2L6sJp7A=
@@ -11166,3 +11200,20 @@ yargs@^14.2.2:
     which-module "^2.0.0"
     y18n "^4.0.0"
     yargs-parser "^15.0.1"
+
+yargs@^15.0.0:
+  version "15.4.1"
+  resolved "https://registry.npm.taobao.org/yargs/download/yargs-15.4.1.tgz?cache=0&sync_timestamp=1594421433232&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fyargs%2Fdownload%2Fyargs-15.4.1.tgz#0d87a16de01aee9d8bec2bfbf74f67851730f4f8"
+  integrity sha1-DYehbeAa7p2L7Cv7909nhRcw9Pg=
+  dependencies:
+    cliui "^6.0.0"
+    decamelize "^1.2.0"
+    find-up "^4.1.0"
+    get-caller-file "^2.0.1"
+    require-directory "^2.1.1"
+    require-main-filename "^2.0.0"
+    set-blocking "^2.0.0"
+    string-width "^4.2.0"
+    which-module "^2.0.0"
+    y18n "^4.0.0"
+    yargs-parser "^18.1.2"

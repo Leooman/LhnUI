@@ -29,7 +29,7 @@ export default class DiagramComponent extends Vue {
         },
         table: {
           isGroup: false,
-          name: "dq_A_table",
+          name: "A_table",
           fields: [
             {
               name: "CustId",
@@ -64,7 +64,7 @@ export default class DiagramComponent extends Vue {
         },
         table: {
           isGroup: true,
-          name: "dq_B_table",
+          name: "B_table",
           fields: [
             {
               name: "CustId",
@@ -92,7 +92,7 @@ export default class DiagramComponent extends Vue {
         },
         table: {
           isGroup: false,
-          name: "dq_C_table",
+          name: "C_table",
           fields: [
             {
               name: "CustId",
@@ -120,7 +120,7 @@ export default class DiagramComponent extends Vue {
         },
         table: {
           isGroup: true,
-          name: "dq_D_table",
+          name: "D_table",
         },
       },
       {
@@ -134,7 +134,7 @@ export default class DiagramComponent extends Vue {
         },
         table: {
           isGroup: false,
-          name: "dq_E_table",
+          name: "E_table",
           fields: [
             {
               name: "CustId",
@@ -162,7 +162,7 @@ export default class DiagramComponent extends Vue {
           id: "9999",
           anchorIndex: 0,
         },
-        text: "inner",
+        text: "text",
       },
     ],
   };

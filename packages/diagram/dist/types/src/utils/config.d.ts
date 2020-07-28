@@ -38,5 +38,10 @@ declare const _default: {
     resizerFill: string;
     resizerWidth: number;
     resizerCursors: string[];
+    thumbnail: boolean;
+    thumbnailW: number;
+    thumbnailH: number;
+    thumbnailFillBg: string;
+    thumbnailFillRect: string;
 };
 export default _default;

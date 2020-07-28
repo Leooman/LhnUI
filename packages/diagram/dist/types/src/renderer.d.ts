@@ -25,10 +25,15 @@ export declare class DiagramRenderer {
     scrollTop: number;
     scrollLeft: number;
     padding: number;
+    thumbnail?: HTMLCanvasElement;
+    thumbnailCtx?: CanvasRenderingContext2D | null;
+    thumbnailScale: number;
+    thumbnailActive: boolean;
     constructor(parentElem: HTMLElement, options?: Options);
     load(options: Options): void;
     render(): void;
-    registerEventListeners(el: HTMLCanvasElement): void;
+    registerEventListeners(): void;
+    registerThumbnailEventListeners(): void;
     removeListener(events: any, listener?: string): void;
     initCanvasWH(): void;
     resize(size: {
@@ -80,4 +85,5 @@ export declare class DiagramRenderer {
         parent?: undefined;
     };
     _registerListener(): any;
+    _registerThumbnailListener(): any;
 }

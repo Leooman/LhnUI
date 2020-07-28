@@ -1,3 +1,5 @@
+import { DiagramRenderer } from '../renderer'
+import config from './config'
 interface RoundedRect {
   ctx: any
   x: number
@@ -129,5 +131,35 @@ export function fittingString(ctx: any, str: string, maxWidth: number) {
       strWidth = ctx.measureText(str).width
     }
     return str + ellipsis
+  }
+}
+
+export function drawThumbnail(self: DiagramRenderer) {
+  if (self.thumbnailCtx && self.thumbnail) {
+    self.thumbnailCtx.save()
+    self.thumbnailCtx.fillStyle = config.thumbnailFillBg
+    self.thumbnailCtx.fillRect(
+      0,
+      0,
+      self.thumbnail.width,
+      self.thumbnail.height
+    )
+    const scale = (self.thumbnailScale = Math.min(
+      config.thumbnailW / self.width,
+      config.thumbnailH / self.height
+    ))
+    self.thumbnailCtx.scale(scale, scale)
+    self.thumbnailCtx.drawImage(
+      self.canvas,
+      self.scrollLeft,
+      self.scrollTop,
+      self.width,
+      self.height,
+      0,
+      0,
+      self.width,
+      self.height
+    )
+    self.thumbnailCtx.restore()
   }
 }

@@ -1,4 +1,4 @@
-import { Resize } from './direction';
+import { Direction, Resize } from './direction';
 import { Point } from './point';
 import { Rect } from './rect';
 import { Line } from './line';
@@ -34,10 +34,14 @@ export declare class Node {
     }, lines?: Array<Line>): void;
     calcResizer(): Point[];
     hitResizer(pos: Point): number | undefined;
-    resize(direction: Resize, delta: {
+    resize(nodes: Array<Node>, direction: Resize, delta: {
         x: number;
         y: number;
     }, lines?: Array<Line>): void;
+    resizeFromParent(parent: Node, delta: {
+        x: number;
+        y: number;
+    }, direction: Direction): void;
     _calcLinePosition(pos: Point): void;
     calcAnchors(): Point[];
     getChildNode(nodes: Array<Node>): Node[];

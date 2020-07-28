@@ -4,6 +4,12 @@ import { Point } from './point'
 import { Rect } from './rect'
 import { Line } from './line'
 import { LineMode, TableMode } from './enums'
+// type Rect = {
+//   x: number
+//   y: number
+//   w: number
+//   h: number
+// }
 export type TableFields = {
   name: string
   primaryKey: boolean
@@ -145,32 +151,54 @@ export class Node {
     return resizer.findIndex(item => item.hit(pos, config.resizerWidth / 2))
   }
   resize(
+    nodes: Array<Node>,
     direction: Resize,
     delta: { x: number; y: number },
     lines?: Array<Line>
   ) {
-    if (this.table.collapse) return
+    if (config.tableHandle === 0 && this.table.collapse) return
     if (this.rect.h <= this.table.titleRect.h) return
+    const parentNode = this.getParentNode(nodes)
     switch (direction) {
       case Resize.LeftTop:
-        this.rect.x += delta.x
-        this.rect.y += delta.y
-        this.rect.w -= delta.x
-        this.rect.h -= delta.y
+        if (parentNode) {
+          this.resizeFromParent(parentNode, delta, Direction.Left)
+          this.resizeFromParent(parentNode, delta, Direction.Up)
+        } else {
+          this.rect.x += delta.x
+          this.rect.y += delta.y
+          this.rect.w -= delta.x
+          this.rect.h -= delta.y
+        }
         break
       case Resize.RightTop:
-        this.rect.y += delta.y
-        this.rect.w += delta.x
-        this.rect.h -= delta.y
+        if (parentNode) {
+          this.resizeFromParent(parentNode, delta, Direction.Right)
+          this.resizeFromParent(parentNode, delta, Direction.Up)
+        } else {
+          this.rect.y += delta.y
+          this.rect.w += delta.x
+          this.rect.h -= delta.y
+        }
         break
       case Resize.RightBottom:
-        this.rect.w += delta.x
-        this.rect.h += delta.y
+        if (parentNode) {
+          this.resizeFromParent(parentNode, delta, Direction.Right)
+          this.resizeFromParent(parentNode, delta, Direction.Bottom)
+        } else {
+          this.rect.w += delta.x
+          this.rect.h += delta.y
+        }
         break
       case Resize.LeftBottom:
-        this.rect.x += delta.x
-        this.rect.w -= delta.x
-        this.rect.h += delta.y
+        if (parentNode) {
+          this.resizeFromParent(parentNode, delta, Direction.Left)
+          this.resizeFromParent(parentNode, delta, Direction.Bottom)
+        } else {
+          this.rect.x += delta.x
+          this.rect.w -= delta.x
+          this.rect.h += delta.y
+        }
         break
     }
     this.calcAnchors()
@@ -179,6 +207,50 @@ export class Node {
         if (line.from.id === this.key) this._calcLinePosition(line.from)
         if (line.to.id === this.key) this._calcLinePosition(line.to)
       })
+    }
+  }
+  resizeFromParent(
+    parent: Node,
+    delta: { x: number; y: number },
+    direction: Direction
+  ) {
+    switch (direction) {
+      case Direction.Left:
+        if (this.rect.x + delta.x <= parent.rect.x) {
+          this.rect.x = parent.rect.x
+        } else {
+          this.rect.x += delta.x
+          this.rect.w -= delta.x
+        }
+        break
+      case Direction.Up:
+        if (this.rect.y + delta.y <= parent.rect.y + parent.table.titleRect.h) {
+          this.rect.y = parent.rect.y + parent.table.titleRect.h
+        } else {
+          this.rect.y += delta.y
+          this.rect.h -= delta.y
+        }
+        break
+      case Direction.Right:
+        if (
+          this.rect.x + this.rect.w + delta.x >=
+          parent.rect.x + parent.rect.w
+        ) {
+          // this.rect.w = parent.rect.x + parent.rect.w
+        } else {
+          this.rect.w += delta.x
+        }
+        break
+      case Direction.Bottom:
+        if (
+          this.rect.y + this.rect.h + delta.y >=
+          parent.rect.y + parent.rect.h
+        ) {
+          // this.rect.h = parent.rect.y + parent.rect.h
+        } else {
+          this.rect.h += delta.y
+        }
+        break
     }
   }
   _calcLinePosition(pos: Point) {

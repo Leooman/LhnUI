@@ -118,7 +118,12 @@ class NodeResize implements State {
       const nowPos = context._calcMousePos(e)
       const delta = context.calcDelta(nowPos, context.mousedownPos)
       context.mousedownPos = nowPos
-      context.activeNode.resize(context.activeResizer, delta, context.lines)
+      context.activeNode.resize(
+        context.nodes,
+        context.activeResizer,
+        delta,
+        context.lines
+      )
       context.render()
     }
   }

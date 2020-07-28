@@ -1,6 +1,7 @@
 import config from '../utils/config'
 import { DiagramRenderer } from '../renderer'
 import { EventType, LineMode } from '../class'
+import { toggleCollapse } from '../models/node/table'
 import { State, EventStates } from './base'
 class NodeClick implements State {
   excute(context: DiagramRenderer) {
@@ -42,7 +43,7 @@ class AnchorMatch implements State {
             id: context.newLineID,
             from: context.activeAnchor,
             to: anchor,
-            text: 'text',
+            text: 'inner',
           })
         } else {
           context.removeInvalidLine()
@@ -57,12 +58,20 @@ class AnchorMatch implements State {
             id: context.newLineID,
             from: context.activeAnchor,
             to: context.activeHoverNode.anchors[anchorIndex],
-            text: 'text',
+            text: 'inner',
           })
         }
       }
     } else {
       context.removeInvalidLine()
+    }
+  }
+}
+class NodeCollapse implements State {
+  excute(context: DiagramRenderer) {
+    if (context.activeHoverNode) {
+      toggleCollapse(context.nodes, context.activeHoverNode)
+      context.render()
     }
   }
 }
@@ -78,6 +87,7 @@ export class MouseupStrategy {
       [EventType.CANVASCLICK]: new CanvasClick(),
       [EventType.LINECLICK]: new LineClick(),
       [EventType.ANCHORMATCH]: new AnchorMatch(),
+      [EventType.NODECOLLAPSE]: new NodeCollapse(),
     }
   }
   setState(state: EventType) {

@@ -1,19 +1,22 @@
-import { DiagramRenderer } from './renderer'
-import { Options } from './class'
-export class Diagram extends DiagramRenderer {
-  fns: any
-  constructor(parentElem: HTMLElement, options: Options = {}, fns: any) {
-    super(parentElem, options)
-    this.fns = fns
-  }
-  handleDblClick() {
-    const node = super.handleDblClick()
-    this.fns.dblclick(node)
-    return node
-  }
-  handleTextClick() {
-    const line = super.handleTextClick()
-    this.fns.textclick(line)
-    return line
-  }
+export { Diagram } from './diagram'
+
+function S4(): string {
+  return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1)
+}
+
+export function uuid(): string {
+  return (
+    S4() +
+    S4() +
+    '-' +
+    S4() +
+    '-' +
+    S4() +
+    '-' +
+    S4() +
+    '-' +
+    S4() +
+    S4() +
+    S4()
+  )
 }

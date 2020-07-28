@@ -1,3 +1,4 @@
+import { DiagramRenderer } from '../renderer';
 interface RoundedRect {
     ctx: any;
     x: number;
@@ -13,4 +14,5 @@ interface RoundedRect {
 export declare function drawRoundedRect({ ctx, x, y, width, height, r, fill, stroke, multichamber, shadow, }: RoundedRect): void;
 export declare function drawShading(ctx: CanvasRenderingContext2D, canvas: any, scaleRatio: number): void;
 export declare function fittingString(ctx: any, str: string, maxWidth: number): string;
+export declare function drawThumbnail(self: DiagramRenderer): void;
 export {};

@@ -1,5 +1,4 @@
 import config from './utils/config'
-import { uuid } from '@lhn/utils'
 import {
   DefalutOptions,
   Options,
@@ -11,8 +10,8 @@ import {
   LineMode,
 } from './class'
 import { drawTableNode } from './models/node/table'
-import { pointInRect } from './utils/utils'
-import { drawShading } from './utils/externals'
+import { pointInRect, uuid } from './utils/utils'
+import { drawShading, drawThumbnail } from './utils/externals'
 import { MouseupStrategy, MousemoveStrategy, MousedownStrategy } from './events'
 export class DiagramRenderer {
   private data: any
@@ -38,8 +37,23 @@ export class DiagramRenderer {
   scrollTop: number = 0
   scrollLeft: number = 0
   padding: number = 10
+  thumbnail?: HTMLCanvasElement
+  thumbnailCtx?: CanvasRenderingContext2D | null
+  thumbnailScale: number = 1
+  thumbnailActive: boolean = false
   constructor(public parentElem: HTMLElement, public options: Options = {}) {
     this.ctx = this.canvas.getContext('2d')
+    if (config.thumbnail) {
+      this.thumbnail = document.createElement('canvas')
+      this.thumbnail.width = config.thumbnailW
+      this.thumbnail.height = config.thumbnailH
+      this.thumbnail.setAttribute(
+        'style',
+        'position: absolute; z-index: 3; bottom:15px; right: 15px;border: 3px solid rgba(192,192,192,0.5);border-radius: 3px;'
+      )
+      this.thumbnailCtx = this.thumbnail.getContext('2d')
+      this.parentElem.appendChild(this.thumbnail)
+    }
     this.load(Object.assign({}, DefalutOptions, options))
   }
   load(options: Options) {
@@ -52,7 +66,11 @@ export class DiagramRenderer {
     this.initCanvasWH()
     this.parentElem.appendChild(this.canvas)
 
-    this.registerEventListeners(this.canvas)
+    // 注册事件监听
+    this.registerEventListeners()
+    if (config.thumbnail && this.thumbnail) {
+      this.registerThumbnailEventListeners()
+    }
 
     this.render()
   }
@@ -67,15 +85,19 @@ export class DiagramRenderer {
 
       this.lines.forEach(line => {
         if (!line.hidden(this.nodes)) {
+          // ANCHOR模式下根据锚点计算端点位置
           config.lineMode === LineMode.ANCHOR &&
             line.updateEndPoints(this.nodes)
           this.ctx && line.draw(this.ctx)
         }
       })
       this.ctx.restore()
+      if (config.thumbnail) {
+        drawThumbnail(this)
+      }
     }
   }
-  registerEventListeners(el: HTMLCanvasElement) {
+  registerEventListeners() {
     const eventListeners = this._registerListener()
     for (const eventName in eventListeners) {
       const eventArr = Array.isArray(eventListeners[eventName])
@@ -83,7 +105,21 @@ export class DiagramRenderer {
         : [eventListeners[eventName]]
 
       for (const eventItem of eventArr) {
-        el.addEventListener(eventName, eventItem.fn)
+        this.canvas.addEventListener(eventName, eventItem.fn)
+      }
+    }
+  }
+  registerThumbnailEventListeners() {
+    if (this.thumbnail) {
+      const eventListeners = this._registerThumbnailListener()
+      for (const eventName in eventListeners) {
+        const eventArr = Array.isArray(eventListeners[eventName])
+          ? eventListeners[eventName]
+          : [eventListeners[eventName]]
+
+        for (const eventItem of eventArr) {
+          this.thumbnail.addEventListener(eventName, eventItem.fn)
+        }
       }
     }
   }
@@ -158,6 +194,7 @@ export class DiagramRenderer {
     return
   }
   getActiveNode(pos: Point) {
+    if (this.eventType === EventType.NODERESIZE) return this.activeNode
     const node = this.inNode(this.nodes, pos)
     if (node && this.activeNode) {
       if (node.key === this.activeNode.key) return this.activeNode
@@ -181,6 +218,10 @@ export class DiagramRenderer {
     return
   }
   inNode(nodes: Array<Node>, pos: Point): Node | undefined {
+    // const node = nodes.find((node: Node) => {
+    //   if (node.table.hidden) return false
+    //   return pointInRect(pos, node.toPoints())
+    // })
     let node
     for (let i = nodes.length - 1; i >= 0; i--) {
       if (!nodes[i].table.hidden && pointInRect(pos, nodes[i].toPoints())) {
@@ -368,6 +409,52 @@ export class DiagramRenderer {
             _this.scaleRatio = scale < 0.5 ? 0.5 : scale
           }
           _this.render()
+        },
+      },
+    }
+  }
+  _registerThumbnailListener(): any {
+    const _this = this
+    return {
+      mousedown: {
+        fn() {
+          if (_this.thumbnail) {
+            _this.thumbnail.style.cursor = 'pointer'
+            _this.thumbnailActive = true
+          }
+        },
+      },
+      mousemove: {
+        fn(e: MouseEvent) {
+          if (_this.thumbnailActive) {
+            // _this.scrollLeft -=
+            //   (e.movementX * _this.scaleRatio) / _this.thumbnailScale
+            // _this.scrollTop -=
+            //   (e.movementY * _this.scaleRatio) / _this.thumbnailScale
+            _this.calcScrollDistance({
+              x: Number(
+                (
+                  (e.movementX * _this.scaleRatio) /
+                  _this.thumbnailScale
+                ).toPrecision(1)
+              ),
+              y: Number(
+                (
+                  (e.movementY * _this.scaleRatio) /
+                  _this.thumbnailScale
+                ).toPrecision(1)
+              ),
+            })
+            _this.render()
+          }
+        },
+      },
+      mouseup: {
+        fn() {
+          if (_this.thumbnail) {
+            _this.thumbnail.style.cursor = 'default'
+            _this.thumbnailActive = false
+          }
         },
       },
     }

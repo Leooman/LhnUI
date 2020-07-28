@@ -78,4 +78,14 @@ export default {
   resizerWidth: 10,
   // resizer cursor
   resizerCursors: ['nw-resize', 'ne-resize', 'se-resize', 'sw-resize'],
+  // 是否显示缩略图
+  thumbnail: false,
+  // thumbnail默认宽度
+  thumbnailW: 240,
+  // thumbnail默认高度
+  thumbnailH: 140,
+  // thumbnail底色
+  thumbnailFillBg: '#ffffff',
+  // thumbnail 移动rect颜色
+  thumbnailFillRect: 'rgba(0,0,0,0.2)',
 }

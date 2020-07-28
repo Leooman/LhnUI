@@ -1,8 +1,7 @@
 import config from '../utils/config'
 import { DiagramRenderer } from '../renderer'
 import { EventType, LineMode } from '../class'
-import { toggleCollapse } from '../models/node/table'
-import { uuid } from '@lhn/utils'
+import { uuid } from '../utils/utils'
 import { State } from './base'
 class Excuter implements State {
   excute(context: DiagramRenderer, e: MouseEvent) {
@@ -25,8 +24,6 @@ class Excuter implements State {
           context.newLineID = uuid()
         } else if (context.activeHoverNode.table?.collapseRect?.hit(pos)) {
           context.eventType = EventType.NODECOLLAPSE
-          toggleCollapse(context.nodes, context.activeHoverNode)
-          context.render()
         } else {
           context.eventType = EventType.NODECLICK
         }
@@ -34,7 +31,6 @@ class Excuter implements State {
         context.eventType = EventType.CANVASCLICK
         context.canvas.style.cursor = 'pointer'
       }
-      context.activeNode = context.getActiveNode(pos)
       if (context.activeNode) {
         const resizer = context.activeNode.hitResizer(pos)
         if (resizer !== undefined && resizer >= 0) {
@@ -43,6 +39,7 @@ class Excuter implements State {
           context.canvas.style.cursor = config.resizerCursors[resizer]
         }
       }
+      context.activeNode = context.getActiveNode(pos)
     }
     if (context.activeLine) {
       const lineControl = context.getLineControl(context.activeLine, pos)

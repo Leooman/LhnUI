@@ -4,12 +4,6 @@ import { Point } from './point'
 import { Rect } from './rect'
 import { Line } from './line'
 import { LineMode, TableMode } from './enums'
-// type Rect = {
-//   x: number
-//   y: number
-//   w: number
-//   h: number
-// }
 export type TableFields = {
   name: string
   primaryKey: boolean
@@ -157,7 +151,10 @@ export class Node {
     lines?: Array<Line>
   ) {
     if (config.tableHandle === 0 && this.table.collapse) return
-    if (this.rect.h <= this.table.titleRect.h) return
+    if (this.rect.h < this.table.titleRect.h) {
+      this.rect.h = this.table.titleRect.h
+      return
+    }
     const parentNode = this.getParentNode(nodes)
     switch (direction) {
       case Resize.LeftTop:

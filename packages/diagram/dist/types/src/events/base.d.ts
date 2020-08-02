@@ -8,6 +8,7 @@ export declare type EventStates = {
     [EventType.NODECLICK]: State;
     [EventType.CANVASCLICK]: State;
     [EventType.LINECLICK]: State;
+    [EventType.LINETEXTCLICK]: State;
     [EventType.ANCHORMATCH]: State;
     [EventType.NODEHOVER]: State;
     [EventType.NODERESIZE]: State;

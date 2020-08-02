@@ -21,7 +21,6 @@
     "webpack-cli": "^3.3.12"
   },
   "scripts": {
-    "preserve:storybook": "yarn build:utils && yarn build:test",
     "serve:storybook": "cd packages/storybook && yarn serve",
     "deploy": "cd packages/storybook && yarn deploy",
     "build:utils": "cd packages/utils && webpack",

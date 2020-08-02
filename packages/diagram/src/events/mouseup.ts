@@ -32,6 +32,11 @@ class LineClick implements State {
     context.render()
   }
 }
+class LineTextClick implements State {
+  excute(context: DiagramRenderer) {
+    context.handleTextClick()
+  }
+}
 class AnchorMatch implements State {
   excute(context: DiagramRenderer, e: MouseEvent) {
     const pos = context._calcMousePos(e)
@@ -86,6 +91,7 @@ export class MouseupStrategy {
       [EventType.NODECLICK]: new NodeClick(),
       [EventType.CANVASCLICK]: new CanvasClick(),
       [EventType.LINECLICK]: new LineClick(),
+      [EventType.LINETEXTCLICK]: new LineTextClick(),
       [EventType.ANCHORMATCH]: new AnchorMatch(),
       [EventType.NODECOLLAPSE]: new NodeCollapse(),
     }

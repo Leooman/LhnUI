@@ -1,7 +1,7 @@
 import config from '../utils/config'
 import { DiagramRenderer } from '../renderer'
 import { EventType, LineMode } from '../class'
-import { uuid } from '../utils/utils'
+import { uuid } from '@lhn/utils'
 import { State } from './base'
 class Excuter implements State {
   excute(context: DiagramRenderer, e: MouseEvent) {
@@ -11,7 +11,7 @@ class Excuter implements State {
     const line = context.getActiveLine(pos)
     if (lineText && typeof lineText !== 'boolean') {
       context.activeLineText = lineText
-      context.handleTextClick()
+      context.eventType = EventType.LINETEXTCLICK
     } else if (line && config.lineMode === LineMode.HANDLER) {
       context.activeLine = line
       context.eventType = EventType.LINECLICK

@@ -10,7 +10,8 @@ import {
   LineMode,
 } from './class'
 import { drawTableNode } from './models/node/table'
-import { pointInRect, uuid } from './utils/utils'
+import { pointInRect } from './utils/utils'
+import { uuid } from '@lhn/utils'
 import { drawShading, drawThumbnail } from './utils/externals'
 import { MouseupStrategy, MousemoveStrategy, MousedownStrategy } from './events'
 export class DiagramRenderer {

@@ -7,6 +7,7 @@ export enum EventType {
   NODECOLLAPSE = 'NodeCollapse',
   ANCHORMATCH = 'AnchorMatch',
   LINECLICK = 'LineClick',
+  LINETEXTCLICK = 'LineTextClick',
   LINECONTROLCLICK = 'LineControlClick',
   CANVASCLICK = 'CanvasClick',
 }

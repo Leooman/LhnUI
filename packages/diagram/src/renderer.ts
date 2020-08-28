@@ -315,9 +315,9 @@ export class DiagramRenderer {
       y: Number(((newPoint.y - oldPoint.y) * this.scaleRatio).toPrecision(1)),
     }
   }
-  handleDblClick() {
-    return this.activeHoverNode
-  }
+  // handleDblClick() {
+  //   return this.activeHoverNode
+  // }
   handleTextClick() {
     return this.activeLineText
   }
@@ -389,18 +389,18 @@ export class DiagramRenderer {
             .reset()
         },
       },
-      dblclick: {
-        fn(e: MouseEvent) {
-          const pos = _this._calcMousePos(e)
-          if (_this.activeHoverNode) {
-            if (_this.activeHoverNode.table?.titleRect?.hit(pos)) {
-              _this.eventType = EventType.NODEDBLCLICK
-              _this.handleDblClick()
-            }
-          }
-          _this.eventType = EventType.NONE
-        },
-      },
+      // dblclick: {
+      //   fn(e: MouseEvent) {
+      //     const pos = _this._calcMousePos(e)
+      //     if (_this.activeHoverNode) {
+      //       if (_this.activeHoverNode.table?.titleRect?.hit(pos)) {
+      //         _this.eventType = EventType.NODEDBLCLICK
+      //         _this.handleDblClick()
+      //       }
+      //     }
+      //     _this.eventType = EventType.NONE
+      //   },
+      // },
       [mousewheel]: {
         fn(e: WheelEvent) {
           if (e.deltaY < 0) {

@@ -6,9 +6,10 @@ export declare type TableFields = {
     name: string;
     primaryKey: boolean;
 };
-declare type Table = {
+export declare type Table = {
     isGroup: boolean;
     name: string;
+    alias?: string;
     fields?: Array<TableFields>;
     titleRect: Rect;
     collapseRect: Rect | null;
@@ -16,7 +17,7 @@ declare type Table = {
     hidden?: boolean;
 };
 export declare class Node {
-    key: number;
+    key: number | string;
     parent?: number;
     rect: Rect;
     table: Table;
@@ -53,4 +54,3 @@ export declare class Node {
     }): boolean;
     updateNodeAnchorStatus(status: boolean): void;
 }
-export {};

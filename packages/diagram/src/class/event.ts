@@ -2,6 +2,7 @@ export enum EventType {
   NONE = 'None',
   NODEHOVER = 'NodeHover',
   NODECLICK = 'NodeClick',
+  NODEMOVE = 'NodeMove',
   NODERESIZE = 'NodeResize',
   NODEDBLCLICK = 'NodeDblClick',
   NODECOLLAPSE = 'NodeCollapse',

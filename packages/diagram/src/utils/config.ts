@@ -43,7 +43,7 @@ export default {
   // 默认箭头终止点类型
   defaultToArrowType: 'triangleSolid',
   // 表节点默认名称
-  tableName: '双击',
+  tableName: '',
   // 表节点默认宽度
   tableDefaultW: 100,
   // 表节点默认高度

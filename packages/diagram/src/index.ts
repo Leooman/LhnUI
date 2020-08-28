@@ -6,11 +6,11 @@ export class Diagram extends DiagramRenderer {
     super(parentElem, options)
     this.fns = fns
   }
-  handleDblClick() {
-    const node = super.handleDblClick()
-    this.fns.dblclick(node)
-    return node
-  }
+  // handleDblClick() {
+  //   const node = super.handleDblClick()
+  //   this.fns.dblclick(node)
+  //   return node
+  // }
   handleTextClick() {
     const line = super.handleTextClick()
     this.fns.textclick(line)

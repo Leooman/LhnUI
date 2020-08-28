@@ -62,12 +62,11 @@ export declare class DiagramRenderer {
         x: number;
         y: number;
     };
-    handleDblClick(): Node | undefined;
     handleTextClick(): Line | undefined;
     getParentNode(nodes: Array<Node>, pos: Point): Node | undefined;
     handleDragover(e: DragEvent): {
         key: string;
-        parent: number;
+        parent: string | number;
         rect: {
             x: number;
             y: number;

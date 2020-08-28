@@ -148,8 +148,9 @@ function _drawTitle(
       ctx.fillStyle = config.fontColor
       ctx.textAlign = config.textAlign as CanvasTextAlign
       ctx.textBaseline = config.textBaseline as CanvasTextBaseline
+      const text = `${node.table.name}${node.table.alias ? '（' + node.table.alias + '）' : ''}`
       ctx.fillText(
-        fittingString(ctx, node.table.name, w - 14),
+        fittingString(ctx, text, w - 14),
         x + node.padding,
         y + node.padding
       )
@@ -178,7 +179,7 @@ function _drawBody(
             ctx.fillStyle = config.tablePrimarykeyFill
             ctx.fillRect(
               x + 1,
-              y + (index + 1) * lineHeight + padding + 0.5,
+              y + node.table.titleRect.h + index * lineHeight + 0.5,
               w - 1,
               lineHeight
             )
@@ -186,8 +187,8 @@ function _drawBody(
 
           ctx.beginPath()
           ctx.strokeStyle = config.tableNodeStroke
-          ctx.moveTo(x + 0.5, y + (index + 1) * lineHeight + padding + 0.5)
-          ctx.lineTo(x + w + 0.5, y + (index + 1) * lineHeight + padding + 0.5)
+          ctx.moveTo(x + 0.5, y + node.table.titleRect.h + index * lineHeight + 0.5)
+          ctx.lineTo(x + w + 0.5, y + node.table.titleRect.h + index * lineHeight + 0.5)
           ctx.stroke()
 
           ctx.font = `${config.fontSize}px ${config.fontFamily}`
@@ -197,7 +198,7 @@ function _drawBody(
           ctx.fillText(
             fittingString(ctx, item.name, w - padding * 2),
             padding + x,
-            y + config.fontSize + padding * 2 + index * lineHeight
+            y + node.table.titleRect.h + index * lineHeight + (lineHeight - config.fontSize + 1) / 2
           )
         }
       })

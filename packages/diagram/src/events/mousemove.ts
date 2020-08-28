@@ -5,6 +5,16 @@ import { drawAnchors } from '../models/node/table'
 import { State, EventStates } from './base'
 class NodeClick implements State {
   excute(context: DiagramRenderer, e: MouseEvent) {
+    const nowPos = context._calcMousePos(e)
+    const delta = context.calcDelta(nowPos, context.mousedownPos)
+    context.mousedownPos = nowPos
+    if (delta.x !== 0 || delta.y !== 0) {
+      context.eventType = EventType.NODEMOVE
+    }
+  }
+}
+class NodeMove implements State {
+  excute(context: DiagramRenderer, e: MouseEvent) {
     if (context.activeNode) {
       const nowPos = context._calcMousePos(e)
       const delta = context.calcDelta(nowPos, context.mousedownPos)
@@ -99,17 +109,17 @@ class CanvasClick implements State {
 }
 class LineClick implements State {
   excute(context: DiagramRenderer, e: MouseEvent) {
-    const nowPos = context._calcMousePos(e)
-    const delta = context.calcDelta(nowPos, context.mousedownPos)
-    context.mousedownPos = nowPos
-    if (context.activeLine) {
-      const fromNode = context.activeLine.from.getLinkNode(context.nodes)
-      const toNode = context.activeLine.to.getLinkNode(context.nodes)
-      if (fromNode && toNode && delta) {
-        context.activeLine.lineMove(fromNode, toNode, delta)
-      }
-      context.render()
-    }
+    // const nowPos = context._calcMousePos(e)
+    // const delta = context.calcDelta(nowPos, context.mousedownPos)
+    // context.mousedownPos = nowPos
+    // if (context.activeLine) {
+    //   const fromNode = context.activeLine.from.getLinkNode(context.nodes)
+    //   const toNode = context.activeLine.to.getLinkNode(context.nodes)
+    //   if (fromNode && toNode && delta) {
+    //     context.activeLine.lineMove(fromNode, toNode, delta)
+    //   }
+    //   context.render()
+    // }
   }
 }
 class NodeResize implements State {
@@ -162,6 +172,7 @@ export class MousemoveStrategy {
     this.eventStates = {
       [EventType.NONE]: new None(),
       [EventType.NODECLICK]: new NodeClick(),
+      [EventType.NODEMOVE]: new NodeMove(),
       [EventType.CANVASCLICK]: new CanvasClick(),
       [EventType.LINECLICK]: new LineClick(),
       [EventType.ANCHORMATCH]: new AnchorMatch(),

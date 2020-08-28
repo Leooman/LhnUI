@@ -20,10 +20,10 @@ export class Data {
       this.lines = []
       for (const item of options.lines) {
         if (item.from && !(item.from instanceof Point)) {
-          item.from = this.translateLineOptionToPoint(this.nodes, item.from)
+          item.from = new Point(item.from.x, item.from.y, item.from.direction, item.from.id)
         }
         if (item.to && !(item.to instanceof Point)) {
-          item.to = this.translateLineOptionToPoint(this.nodes, item.to)
+          item.to = new Point(item.to.x, item.to.y, item.to.direction, item.to.id)
         }
         this.lines.push(new Line(item))
       }
@@ -32,17 +32,6 @@ export class Data {
       this.toArrowType = options.toArrowType || config.defaultToArrowType
       this.scale = options.scale || 1
       this.locked = options.locked || 0
-    }
-  }
-  translateLineOptionToPoint(
-    nodes: Array<Node>,
-    options: { id: number | string; anchorIndex: number }
-  ) {
-    const node = nodes.find(item => item.key === options.id)
-    if (node) {
-      return node.anchors[options.anchorIndex]
-    } else {
-      return options
     }
   }
 }

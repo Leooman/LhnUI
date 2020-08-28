@@ -6,6 +6,7 @@ export interface State {
 export type EventStates = {
   [EventType.NONE]: State
   [EventType.NODECLICK]: State
+  [EventType.NODEMOVE]: State
   [EventType.CANVASCLICK]: State
   [EventType.LINECLICK]: State
   [EventType.LINETEXTCLICK]: State

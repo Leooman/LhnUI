@@ -156,19 +156,23 @@ export default class DiagramComponent extends Vue {
       {
         from: {
           id: "0",
-          anchorIndex: 2,
+          direction: 1,
+          x: 160,
+          y: 133
         },
         to: {
           id: "9999",
-          anchorIndex: 0,
+          direction: 0,
+          x: 110,
+          y: 320
         },
         text: "text",
       },
     ],
   };
-  dblclick(node: any) {
-    alert(JSON.stringify(node));
-  }
+  // dblclick(node: any) {
+  //   alert(JSON.stringify(node));
+  // }
   textclick(node: any) {
     alert(JSON.stringify(node));
   }
@@ -181,7 +185,7 @@ export default class DiagramComponent extends Vue {
           data: this.ergData,
         },
         {
-          dblclick: this.dblclick,
+          // dblclick: this.dblclick,
           textclick: this.textclick,
         }
       );

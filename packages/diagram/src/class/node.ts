@@ -4,13 +4,15 @@ import { Point } from './point'
 import { Rect } from './rect'
 import { Line } from './line'
 import { LineMode, TableMode } from './enums'
+import { uuid } from '@lhn/utils'
 export type TableFields = {
   name: string
   primaryKey: boolean
 }
-type Table = {
+export type Table = {
   isGroup: boolean
   name: string
+  alias?: string
   fields?: Array<TableFields>
   titleRect: Rect
   collapseRect: Rect | null
@@ -18,7 +20,7 @@ type Table = {
   hidden?: boolean
 }
 export class Node {
-  key!: number
+  key: number | string
   parent?: number
   rect!: Rect
   table!: Table
@@ -28,7 +30,7 @@ export class Node {
   active?: boolean
   anchors: Array<Point>
   constructor(options: Node) {
-    this.key = options.key
+    this.key = options.key || uuid()
     this.parent = options.parent
     this.rect = options.rect
     this.padding = options.padding || config.tablePadding
@@ -37,6 +39,7 @@ export class Node {
     this.table.collapse = options.table.collapse || false
     this.table.hidden = options.table.hidden || false
     this.table.name = options.table.name || config.tableName
+    this.table.alias = options.table.alias
     this.table.titleRect = new Rect(
       this.rect.x + 0.5,
       this.rect.y + 0.5,
@@ -47,11 +50,11 @@ export class Node {
     )
     this.table.collapseRect = this.table.isGroup
       ? new Rect(
-          this.rect.x + this.rect.w - this.fontSize - this.padding * 2,
-          this.rect.y + 0.5,
-          this.fontSize + this.padding * 2,
-          this.fontSize + this.padding * 2
-        )
+        this.rect.x + this.rect.w - this.fontSize - this.padding * 2,
+        this.rect.y + 0.5,
+        this.fontSize + this.padding * 2,
+        this.fontSize + this.padding * 2
+      )
       : null
     this.alias = options.alias || ''
     this.active = options.active || false
@@ -64,16 +67,16 @@ export class Node {
       new Point(
         this.rect.x + this.rect.w,
         this.rect.y +
-          (config.tableHandle === TableMode.COLLAPSE && this.table.collapse
-            ? this.table.titleRect.h
-            : this.rect.h)
+        (config.tableHandle === TableMode.COLLAPSE && this.table.collapse
+          ? this.table.titleRect.h
+          : this.rect.h)
       ),
       new Point(
         this.rect.x,
         this.rect.y +
-          (config.tableHandle === TableMode.COLLAPSE && this.table.collapse
-            ? this.table.titleRect.h
-            : this.rect.h)
+        (config.tableHandle === TableMode.COLLAPSE && this.table.collapse
+          ? this.table.titleRect.h
+          : this.rect.h)
       ),
     ]
   }
@@ -119,9 +122,9 @@ export class Node {
       new Point(
         this.rect.x + this.rect.w,
         this.rect.y +
-          (config.tableHandle === TableMode.COLLAPSE && this.table.collapse
-            ? this.table.titleRect.h
-            : this.rect.h),
+        (config.tableHandle === TableMode.COLLAPSE && this.table.collapse
+          ? this.table.titleRect.h
+          : this.rect.h),
         Resize.RightBottom,
         this.key
       )
@@ -130,9 +133,9 @@ export class Node {
       new Point(
         this.rect.x,
         this.rect.y +
-          (config.tableHandle === TableMode.COLLAPSE && this.table.collapse
-            ? this.table.titleRect.h
-            : this.rect.h),
+        (config.tableHandle === TableMode.COLLAPSE && this.table.collapse
+          ? this.table.titleRect.h
+          : this.rect.h),
         Resize.LeftBottom,
         this.key
       )
@@ -282,9 +285,9 @@ export class Node {
       new Point(
         this.rect.x + this.rect.w,
         this.rect.y +
-          (config.tableHandle === TableMode.COLLAPSE && this.table.collapse
-            ? this.table.titleRect.h / 2
-            : this.rect.h / 2),
+        (config.tableHandle === TableMode.COLLAPSE && this.table.collapse
+          ? this.table.titleRect.h / 2
+          : this.rect.h / 2),
         Direction.Right,
         this.key
       )
@@ -293,9 +296,9 @@ export class Node {
       new Point(
         this.rect.x + this.rect.w / 2,
         this.rect.y +
-          (config.tableHandle === TableMode.COLLAPSE && this.table.collapse
-            ? this.table.titleRect.h
-            : this.rect.h),
+        (config.tableHandle === TableMode.COLLAPSE && this.table.collapse
+          ? this.table.titleRect.h
+          : this.rect.h),
         Direction.Bottom,
         this.key
       )
@@ -304,9 +307,9 @@ export class Node {
       new Point(
         this.rect.x,
         this.rect.y +
-          (config.tableHandle === TableMode.COLLAPSE && this.table.collapse
-            ? this.table.titleRect.h / 2
-            : this.rect.h / 2),
+        (config.tableHandle === TableMode.COLLAPSE && this.table.collapse
+          ? this.table.titleRect.h / 2
+          : this.rect.h / 2),
         Direction.Left,
         this.key
       )
@@ -318,7 +321,7 @@ export class Node {
   }
   getGenerations(nodes: Array<Node>) {
     const generations: Node[] = []
-    const getChild = function(node: Node) {
+    const getChild = function (node: Node) {
       const child = node.getChildNode(nodes)
       if (child) {
         generations.push(...child)

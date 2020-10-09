@@ -1,0 +1,15 @@
+#icon-container {
+    font-size: 18px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.icon-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+}
+.icon-item span {
+    font-size: 14px;
+    white-space: nowrap;
+}

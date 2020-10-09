@@ -25,7 +25,8 @@
     "deploy": "cd packages/storybook && yarn deploy",
     "build:utils": "cd packages/utils && webpack",
     "build:test": "cd packages/test && webpack",
-    "build:diagram": "cd packages/diagram && webpack"
+    "build:diagram": "cd packages/diagram && webpack",
+    "build:icon": "cd packages/icon && webpack"
   },
   "workspaces": [
     "packages/*"

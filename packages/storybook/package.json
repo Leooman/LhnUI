@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@lhn/diagram": "^0.0.0",
+    "@lhn/icon": "^0.0.0",
     "@lhn/test": "^0.0.0",
     "@lhn/utils": "^0.0.0",
     "@storybook/vue": "^5.3.19"

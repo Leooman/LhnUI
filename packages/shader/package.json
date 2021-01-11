@@ -1,0 +1,14 @@
+{
+  "name": "@lhn/shader",
+  "version": "0.0.0",
+  "description": "threejs shader material",
+  "main": "./src/index.ts",
+  "repository": "https://github.com/Leooman/LhnUI.git",
+  "author": "Leooman <yonghenglion@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "@tweenjs/tween.js": "^18.6.4",
+    "three": "^0.124.0"
+  }
+}

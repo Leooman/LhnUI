@@ -22,7 +22,8 @@
   },
   "scripts": {
     "serve:storybook": "cd packages/storybook && yarn serve",
-    "deploy": "cd packages/storybook && yarn deploy",
+    "serve:vue": "cd packages/vue && yarn serve",
+    "deploy": "cd packages/vue && yarn deploy",
     "build:utils": "cd packages/utils && webpack",
     "build:test": "cd packages/test && webpack",
     "build:diagram": "cd packages/diagram && webpack",

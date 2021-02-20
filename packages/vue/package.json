@@ -12,6 +12,7 @@
     "@lhn/diagram": "^0.0.0",
     "@lhn/icon": "^0.0.0",
     "@lhn/shader": "^0.0.0",
+    "@lhn/three": "^0.0.0",
     "@vue/composition-api": "^1.0.0-beta.25",
     "core-js": "^3.6.5",
     "vue": "^2.6.11",

@@ -1,8 +1,7 @@
 <template>
   <div class="shader">
     <router-link class="item" v-for="shader in shaders" :to="`/subShader/${shader}`">
-      {{shader}}
-      <!-- <img :src="`/shader/${shader}.png`" alt=""> -->
+      <img :src="`${baseUrl}/shader/${shader}.png`" alt="">
     </router-link>
   </div>
 </template>
@@ -13,10 +12,11 @@ import { Shaders } from '@lhn/shader'
 export default defineComponent({
   setup(_,ctx) {
     const data = reactive({
-      shaders:Object.keys(Shaders)
+      shaders:Object.keys(Shaders),
+      baseUrl: ''
     })
     onMounted(() => {
-
+      data.baseUrl = process.env.BASE_URL
     })
     return {
       ...toRefs(data)

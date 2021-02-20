@@ -30,6 +30,11 @@ const routes: Array<RouteConfig> = [
     name: 'subShader',
     component: () => import(/* webpackChunkName: "subShader" */ '../components/subShader.vue'),
   },
+  {
+    path: '/three',
+    name: 'Three',
+    component: () => import(/* webpackChunkName: "three" */ '../views/Three.vue'),
+  },
 ]
 
 const router = new VueRouter({

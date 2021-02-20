@@ -3,6 +3,7 @@
     <router-link class="item" to="diagram">Diagram</router-link>
     <router-link class="item" to="icon">Icon</router-link>
     <router-link class="item" to="shader">Shader</router-link>
+    <router-link class="item" to="three">ThreeJS</router-link>
   </div>
 </template>
 

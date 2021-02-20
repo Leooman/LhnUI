@@ -1,43 +1,46 @@
 <template>
   <div class="shader">
-    <div id="canvas" ref="canvas"></div>
+    <router-link class="item" v-for="shader in shaders" :to="`/subShader/${shader}`">
+      {{shader}}
+      <!-- <img :src="`/shader/${shader}.png`" alt=""> -->
+    </router-link>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, onMounted, reactive, toRefs } from '@vue/composition-api'
-import { Renderer } from '@lhn/shader'
+import { Shaders } from '@lhn/shader'
 export default defineComponent({
   setup(_,ctx) {
-    let renderer:Renderer
+    const data = reactive({
+      shaders:Object.keys(Shaders)
+    })
     onMounted(() => {
-      const ele = document.getElementById("canvas")
-      if (ele) {
-        renderer = new Renderer(ele,{},{})
-        console.log(renderer)
-        renderer.init()
-      }
+
     })
     return {
-      
+      ...toRefs(data)
     }
   }
 })
 </script>
 
 <style lang="scss" scoped>
-  .shader {
-    height: 100%;
-    display: flex;
-    flex: 1;
-    background: #ffffff;
-    overflow: hidden;
-    position: relative;
-    #canvas {
-      width: 100%;
-      height: 100%;
-      margin: auto;
-      overflow: hidden;
+  .shader{
+    display: grid;
+    min-height: 100%;
+    grid-template-columns: repeat(4,1fr);
+    grid-row-gap: 10px;
+    grid-column-gap: 10px;
+    .item{
+      border: 1px solid #cccccc;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      img{
+        width: 100%;
+        height: 100%;
+      }
     }
   }
 </style>

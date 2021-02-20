@@ -23,7 +23,12 @@ const routes: Array<RouteConfig> = [
   {
     path: '/shader',
     name: 'Shader',
-    component: () => import(/* webpackChunkName: "shader" */ '../views/Shader.vue')
+    component: () => import(/* webpackChunkName: "shader" */ '../views/Shader.vue'),
+  },
+  {
+    path: '/subShader/:id',
+    name: 'subShader',
+    component: () => import(/* webpackChunkName: "subShader" */ '../components/subShader.vue'),
   },
 ]
 

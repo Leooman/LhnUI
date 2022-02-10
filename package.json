@@ -11,7 +11,7 @@
     "@vue/babel-preset-jsx": "^1.1.2",
     "clean-webpack-plugin": "^3.0.0",
     "lerna": "^3.22.1",
-    "node-sass": "^4.14.1",
+    "node-sass": "^7.0.0",
     "sass-loader": "^8.0.2",
     "ts-loader": "^7.0.5",
     "typescript": "^3.9.5",
